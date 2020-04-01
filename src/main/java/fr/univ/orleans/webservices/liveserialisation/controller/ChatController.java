@@ -1,7 +1,9 @@
 package fr.univ.orleans.webservices.liveserialisation.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import fr.univ.orleans.webservices.liveserialisation.modele.Message;
 import fr.univ.orleans.webservices.liveserialisation.modele.Utilisateur;
+import fr.univ.orleans.webservices.liveserialisation.modele.Views;
 import fr.univ.orleans.webservices.liveserialisation.service.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.security.Principal;
 import java.util.Collection;
 
 @RestController
@@ -31,9 +32,16 @@ public class ChatController {
         return ResponseEntity.created(location).body(messageRec);
     }
 
+    @JsonView(Views.Resume.class)
     @GetMapping("/utilisateurs/{idUser}/messages")
     public ResponseEntity<Collection<Message>>  getAll(@PathVariable String idUser) {
         return ResponseEntity.ok().body(services.findUtilisateurById(idUser).get().getMessages());
+    }
+
+    @JsonView(Views.Complete.class)
+    @GetMapping("/utilisateurs/{idUser}")
+    public ResponseEntity<Utilisateur>  getUtilisateur(@PathVariable String idUser) {
+        return ResponseEntity.ok().body(services.findUtilisateurById(idUser).get());
     }
 
 }

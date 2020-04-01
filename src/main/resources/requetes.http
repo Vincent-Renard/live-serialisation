@@ -1,6 +1,9 @@
 GET http://localhost:8080/utilisateurs/fred/messages
 
 ###
+GET http://localhost:8080/utilisateurs/fred
+
+###
 POST http://localhost:8080/utilisateurs/fred/messages
 Content-Type: application/json
 
