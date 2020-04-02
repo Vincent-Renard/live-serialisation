@@ -1,20 +1,18 @@
-package fr.univ.orleans.webservices.liveserialisation.modele;
+package fr.univ.orleans.webservices.liveserialisation.dto;
 
-import com.fasterxml.jackson.annotation.*;
 
-public class Message {
+public class MessageDTO {
     private Long id;
     private String texte;
-    private Utilisateur utilisateur;
+    private String utilisateur;
 
-    public Message() {
-
-    }
-    public Message(Long id, String texte, Utilisateur utilisateur) {
+    public MessageDTO(Long id, String texte, String utilisateur) {
         this.id = id;
         this.texte = texte;
         this.utilisateur = utilisateur;
-        //this.utilisateur.addMessage(this);
+    }
+
+    public MessageDTO() {
     }
 
     public Long getId() {
@@ -33,11 +31,11 @@ public class Message {
         this.texte = texte;
     }
 
-    public Utilisateur getUtilisateur() {
+    public String getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
+    public void setUtilisateur(String utilisateur) {
         this.utilisateur = utilisateur;
     }
 }

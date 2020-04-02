@@ -1,5 +1,9 @@
 package fr.univ.orleans.webservices.liveserialisation.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.ArrayList;
 import java.util.List;
 
