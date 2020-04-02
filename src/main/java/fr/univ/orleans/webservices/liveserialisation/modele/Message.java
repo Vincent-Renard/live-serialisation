@@ -1,17 +1,20 @@
 package fr.univ.orleans.webservices.liveserialisation.modele;
 
 import com.fasterxml.jackson.annotation.*;
+import org.springframework.boot.CommandLineRunner;
 
 public class Message {
-    @JsonView(Views.Resume.class)
+
+    @JsonView(Views.Id.class)
     private Long id;
-    @JsonView(Views.Resume.class)
+    @JsonView(Views.MessageComplet.class)
     private String texte;
+    @JsonView(Views.MessageComplet.class)
     private Utilisateur utilisateur;
 
     public Message() {
-
     }
+
     public Message(Long id, String texte, Utilisateur utilisateur) {
         this.id = id;
         this.texte = texte;

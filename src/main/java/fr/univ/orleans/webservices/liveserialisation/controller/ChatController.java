@@ -18,6 +18,7 @@ public class ChatController {
     @Autowired
     private Services services;
 
+    @JsonView(Views.MessageComplet.class)
     @PostMapping("/utilisateurs/{idUser}/messages")
     public ResponseEntity<Message> create(@PathVariable String idUser, @RequestBody Message message) {
         Utilisateur utilisateur = services.findUtilisateurById(idUser)
@@ -32,13 +33,13 @@ public class ChatController {
         return ResponseEntity.created(location).body(messageRec);
     }
 
-    @JsonView(Views.Resume.class)
+    @JsonView(Views.MessageComplet.class)
     @GetMapping("/utilisateurs/{idUser}/messages")
     public ResponseEntity<Collection<Message>>  getAll(@PathVariable String idUser) {
         return ResponseEntity.ok().body(services.findUtilisateurById(idUser).get().getMessages());
     }
 
-    @JsonView(Views.Complete.class)
+    @JsonView(Views.UtilisateurComplet.class)
     @GetMapping("/utilisateurs/{idUser}")
     public ResponseEntity<Utilisateur>  getUtilisateur(@PathVariable String idUser) {
         return ResponseEntity.ok().body(services.findUtilisateurById(idUser).get());
